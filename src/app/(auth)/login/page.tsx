@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import Link from 'next/link'
 import axios from "axios"
 import { useRouter } from 'next/navigation'
+
 const page = () => {
     const router=useRouter()
     const [data, setData] = useState({
@@ -21,7 +22,7 @@ const page = () => {
             const response=await axios.post("/api/users/login",data);
             console.log(response)
             console.log("Login successfully")
-            router.push(`/profile/${data.email}`)
+            router.push(`/profile`)
         } catch (error) {
             console.log(error)
         }finally{
@@ -32,6 +33,7 @@ const page = () => {
     useEffect(() => {
         if(data.email.length > 0 && data.password.length>4) {
             setBtn({...btn, btnDisabled:false})
+          
         }
         else{
             setBtn({...btn, btnDisabled:true})

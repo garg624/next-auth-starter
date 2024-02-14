@@ -5,7 +5,16 @@ import type { NextRequest } from 'next/server'
 
 export function middleware(request: NextRequest) {
   
-    const path=request.nextUrl.pathname
+    const path=request.nextUrl.pathname ;
+    const ispublic = path === "/login" || path === "/signup";
+    const token=request.cookies.get('token')?.value|| "";
+    if(ispublic && token){
+      // return NextResponse.redirect('/');
+      return NextResponse.redirect(new URL("/",request.nextUrl));
+    }
+    if(!ispublic && !token){
+      return NextResponse.redirect(new URL("/login",request.nextUrl));
+    }
 }
  
 // these are the routes in which the middleware willl run
