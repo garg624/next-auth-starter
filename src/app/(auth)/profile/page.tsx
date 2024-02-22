@@ -5,10 +5,26 @@ import { useRouter } from 'next/navigation';
 // import { getTokenData } from '@/app/helpers/getTokenData';
 import Link from 'next/link';
 
-
+interface userData{
+  
+    _id: string,
+    username: string,
+    email: string,
+    isVerfied: boolean,
+    isAdmin: boolean,
+    __v: number
+  
+}
 const page = () => {
   const router = useRouter();
-  const [data, setData] = useState("profile information");
+  const [data, setData] = useState<userData>({
+    _id: '',
+    username: '',
+    email: '',
+    isVerfied: false,
+    isAdmin: false,
+    __v: 0
+  });
   const handlelogout = async (e: any) => {
     e.preventDefault();
     try {

@@ -2,7 +2,7 @@ import mongoose from "mongoose"
 
 export async function connect(){
     try {
-        const db =await  mongoose.connect("mongodb+srv://gargayush970:qwerty1234@cluster0.hltmoro.mongodb.net/auth");
+        const db =await  mongoose.connect(process.env.MONGO_URI);
 
         console.log(db.connection.host);
         //for check purpose only
